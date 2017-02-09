@@ -44,7 +44,19 @@ class Matrix
 
   # method to count determinant of matrix
   def determinant
-
+    m = @matrix
+    case row_count
+      when 0
+        1
+      when 1
+        m[0][0]
+      when 2
+        m[0][0] * m[1][1] - m[0][1] * m[1][0]
+      when 3
+        + m[0][0] * m[1][1] * m[2][2] + m[0][1] * m[1][2] * m[2][0]
+        + m[0][2] * m[1][0] * m[2][1] - m[0][0] * m[1][2] * m[2][1]
+        - m[0][1] * m[1][0] * m[2][2] - m[0][2] * m[1][1] * m[2][0]
+    end
   end
 
   # method to get inversed matrix
@@ -59,7 +71,7 @@ class Matrix
 
   # method to get transposed matrix
   def transpose
-    new_matrix = @matrix.transpose
+    @matrix.transpose
   end
 
   # method to transpose current matrix
@@ -67,19 +79,23 @@ class Matrix
     @matrix = @matrix.transpose
   end
 
-  # method to get matrix minor
-  def minor
-
+  # method to get matrix section
+  # x1, y1 - first coordinate
+  # x2, y2 - second coordinate
+  def section (x1, y1, x2, y2)
+    new_matrix = @matrix[x1, x2].collect{ |row|
+      row[y1, y2]
+    }
   end
 
   # overload + for matrix addition
-  def +(m)
-    add(m)
+  def + m
+
   end
 
   # overload * for matrix multiplication
-  def *(m)
-    multiply(m)
+  def * m
+
   end
 
 end
