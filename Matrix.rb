@@ -98,7 +98,7 @@ class Matrix
 
   # method to inverse of the matrix
   def inverse
-    matrix_a = new_matrix(self.rows, self.column_count)
+    matrix_a = Marshal.load( Marshal.dump( self.rows ) )
     puts matrix_a.inspect
     matrix_b = row_count.times.map{|row, l| [0]*row_count;}.map.with_index{|row, l| row[l]=1;row}
     for k in (0 .. row_count - 1)
